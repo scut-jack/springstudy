@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="spring-dao.xml"/>
+    <!--mybatis-spring整合，方式一，重点 -->
+    <!--<bean id="userMapper" class="online.helloweb.mapper.UserMapperimpl">-->
+    <!--<property name="sqlSession" ref="sqlSession"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;mybatis-spring整合，方式二 &ndash;&gt;-->
+    <!--<bean id="userMapper2" class="online.helloweb.mapper.UserMapperimpl2">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--</bean>-->
+
+    <bean id="userService" class="online.helloweb.service.UserServiceImpl">
+        <constructor-arg ref="userMapper"/>
+    </bean>
+</beans>

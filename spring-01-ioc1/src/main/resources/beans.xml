@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--bean的标签分析
+        id:bean的唯一标识符，也就是相当于对象名
+        class:bean对象所对应的全限定名：包+类型
+        name:也是别名，而且name可以同时取多个别名
+    -->
+    <bean id="userDaoimpl" class="online.helloweb.dao.userDaoimpl"/>
+    <bean id="userDaomysqlimpl" class="online.helloweb.dao.userDaomysqlimpl"/>
+    <bean id="userServiceimpl" class="online.helloweb.service.userServiceimpl">
+        <property name="userDao" ref="userDaoimpl"/>
+    </bean>
+</beans>

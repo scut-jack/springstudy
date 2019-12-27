@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 使用spring来创建对象，在spring这些都称为Bean-->
+    <bean id="address" class="online.helloweb.pojo.Address">
+        <property name="address" value="guangzhou"/>
+    </bean>
+    <bean id="student" class="online.helloweb.pojo.Student">
+        <property name="name" value="王腾飞"/>
+        <property name="address" ref="address"/>
+        <property name="books">
+            <array>
+                <value>红楼梦</value>
+                <value>西游记</value>
+                <value>三国演义</value>
+            </array>
+        </property>
+        <property name="hobbys">
+            <list>
+                <value>足球</value>
+                <value>羽毛球</value>
+                <value>唱歌</value>
+            </list>
+        </property>
+        <property name="card">
+            <map>
+                <entry key="身份证" value="111111111111"/>
+                <entry key="银行卡" value="222222222222"/>
+            </map>
+        </property>
+        <property name="games">
+            <set>
+                <value>LOL</value>
+                <value>和平精英</value>
+            </set>
+        </property>
+        <property name="wife">
+            <null/>
+        </property>
+        <property name="info">
+            <props>
+                <prop key="学号">201821016079</prop>
+                <prop key="username">xiaoming</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration核心配置文件-->
+<configuration>
+    <!--引入配置文件-->
+    <properties resource="database.properties"></properties>
+    <!--指定一个包名，mybatis会自动搜索包下的实体类，
+    并为其设置别名 例：User->user，具体参考官网-->
+    <typeAliases>
+        <package name="online.helloweb.pojo"/>
+    </typeAliases>
+   <environments default="c3p0"><!--default选择采用哪个environment-->
+       <!--environment决定加载那种环境，
+       包括数据源和事务管理器,POOLED为mybatis自带连接池-->
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.Driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+       <!--c3p0数据库连接池-->
+       <environment id="c3p0">
+           <transactionManager type="JDBC"/>
+           <dataSource type="online.helloweb.dataSource.c3p0DataSourceFactory">
+               <property name="driverClass" value="${jdbc.Driver}"/>
+               <property name="jdbcUrl" value="${jdbc.url}"/>
+               <property name="user" value="${jdbc.username}"/>
+               <property name="password" value="${jdbc.password}"/>
+               <!--c3p0私有属性，可以不设置-->
+               <property name="maxPoolSize" value="30"/>
+               <property name="minPoolSize" value="10"/>
+               <!--关闭连接后不自动提交-->
+               <property name="autoCommitOnClose" value="false"/>
+               <!--获取连接超时时间-->
+               <property name="checkoutTimeout" value="10000"/>
+               <!--获取连接失败重新尝试次数-->
+               <property name="acquireRetryAttempts" value="5"/>
+               <!--c3p0私有属性-->
+           </dataSource>
+       </environment>
+    </environments>
+    <mappers>
+        <!--配置映射器mapper的几种方式，例举两种，具体看官网-->
+        <!--<mapper class="online.helloweb.mapper.UserMapper"/>-->
+        <mapper resource="online/helloweb/mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>
